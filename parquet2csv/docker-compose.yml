@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  spark-jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: jupyter/all-spark-notebook
+    ports:
+      - 8888:8888
+      - 4040:4040
+      - 4041:4041
+    volumes:
+      - ./input:/app/input
+      - ./output:/app/output
+      - ./work:/app/work
+
+      - ~/.aws/:/home/jovyan/.aws/
+      
+    environment:
+      - AWS_DEFAULT_PROFILE
+      - AWS_PROFILE
